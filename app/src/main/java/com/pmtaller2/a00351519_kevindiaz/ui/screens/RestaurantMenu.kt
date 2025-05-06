@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,21 +21,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import com.pmtaller2.a00351519_kevindiaz.data.model.Dish
 import com.pmtaller2.a00351519_kevindiaz.ui.components.BottomNavigationBar
 import com.pmtaller2.a00351519_kevindiaz.ui.components.DishCard
 import com.pmtaller2.a00351519_kevindiaz.ui.components.Search
 import com.pmtaller2.a00351519_kevindiaz.ui.theme.black
-import com.pmtaller2.a00351519_kevindiaz.ui.theme.blue
 import com.pmtaller2.a00351519_kevindiaz.ui.theme.darkBlue
 import com.pmtaller2.a00351519_kevindiaz.ui.viewmodel.RestaurantVM
 
@@ -54,10 +48,7 @@ fun RestaurantMenu(navController: NavController, restaurantId: Int, restaurantVi
                     Column {
                         Text(
                             text = restaurant?.name ?: "",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontFamily = FontFamily.SansSerif,
-                                fontWeight = FontWeight.Bold),
-                            color = black
+                            style = MaterialTheme.typography.titleLarge
 
                         )
                         Text(

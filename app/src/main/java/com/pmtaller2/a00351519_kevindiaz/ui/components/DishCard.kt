@@ -1,6 +1,5 @@
 package com.pmtaller2.a00351519_kevindiaz.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,23 +17,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.AsyncImage
+import com.pmtaller2.a00351519_kevindiaz.R
 import com.pmtaller2.a00351519_kevindiaz.data.model.Dish
-import com.pmtaller2.a00351519_kevindiaz.ui.theme.black
-import com.pmtaller2.a00351519_kevindiaz.ui.theme.blue
 import com.pmtaller2.a00351519_kevindiaz.ui.theme.darkBlue
 import com.pmtaller2.a00351519_kevindiaz.ui.theme.whiteA
-import com.pmtaller2.a00351519_kevindiaz.ui.theme.whiteB
 
 @Composable
 fun DishCard(
     dish: Dish,
-    onBuyClick: (() -> Unit)? = null // lo use para que no siempre este activo el boton buy
+    onBuyClick: (() -> Unit)? = null
 ) {
     Card(
         modifier = Modifier
@@ -48,13 +42,14 @@ fun DishCard(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = rememberAsyncImagePainter(dish.imageUrl),
+            AsyncImage(
+                model = dish.imageUrl,
                 contentDescription = "Imagen de platillo",
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(100.dp,100.dp)
                     .padding(2.dp),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Fit,
+                error = painterResource(R.drawable.placeholder_dish)
             )
 
             Column(
@@ -64,13 +59,12 @@ fun DishCard(
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(text = dish.name, modifier = Modifier.padding(bottom = 4.dp),
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontFamily = FontFamily.SansSerif,
-                        fontWeight = FontWeight.Bold),
-                    color = black
+                    style = MaterialTheme.typography.titleMedium
 
                 )
-                Text(text = dish.description, color = darkBlue)
+                Text(text = dish.description,
+                    style = MaterialTheme.typography.bodyMedium
+                    )
             }
 
             if (onBuyClick != null) {
